@@ -1,0 +1,220 @@
+<title>Frhad Mohamad</title>
+<meta name="description" content="Persönliche Webseite von Frhad Mohamad – Sprachen, Werdegang und Weg in die IT.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Layout: single reading column; a two-column grid (year | detail) for the Stationen timeline, stacking to one column on phones. */
+  :root{
+    --bg:#f6f4ef;            /* warm paper */
+    --surface:#fffdf8;
+    --fg:#20242b;            /* ink */
+    --muted:#5d6672;         /* warm grey, hue-biased to the ink */
+    --line:#e3ded3;
+    --accent:#0e6b63;        /* deep teal */
+    --accent-soft:#d7e8e5;
+    --display:"Fraunces",Georgia,serif;
+    --body:"Public Sans",system-ui,-apple-system,Segoe UI,sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#14171c; --surface:#1b1f26; --fg:#eceae4; --muted:#9aa3b0;
+      --line:#2b313a; --accent:#55c3b7; --accent-soft:#17352f; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171c; --surface:#1b1f26; --fg:#eceae4; --muted:#9aa3b0;
+    --line:#2b313a; --accent:#55c3b7; --accent-soft:#17352f; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.6;margin:0}
+  .wrap{max-width:760px;margin:0 auto;padding-inline:20px;padding-block:0}
+  a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+
+  header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line)}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;
+    max-width:760px;margin:0 auto;padding:12px 20px}
+  .brand{font-family:var(--display);font-weight:600;font-size:1.05rem}
+  nav{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:center;font-size:.82rem}
+  nav a{color:var(--muted);text-decoration:none}
+  nav a:hover{color:var(--fg)}
+  .toggle{border:1px solid var(--line);background:var(--surface);color:var(--muted);
+    border-radius:999px;padding:5px 11px;font:inherit;font-size:.78rem;cursor:pointer}
+  .toggle:hover{color:var(--fg)}
+
+  .hero{padding-block:54px 40px}
+  .eyebrow{font-size:.78rem;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 14px}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(2.3rem,7vw,3.5rem);line-height:1.04;
+    margin:0;text-wrap:balance;letter-spacing:-.01em}
+  .tagline{font-size:1.15rem;color:var(--muted);margin:16px 0 0;max-width:38ch}
+  .langline{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+  .chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;
+    padding:5px 13px;font-size:.84rem}
+  .chip b{color:var(--accent);font-weight:600}
+
+  section{padding-block:30px;border-top:1px solid var(--line)}
+  h2{font-family:var(--display);font-weight:600;font-size:1.5rem;margin:0 0 6px;letter-spacing:-.01em}
+  .sec-note{color:var(--muted);font-size:.9rem;margin:0 0 22px}
+  .lead{font-size:1.05rem;max-width:62ch}
+
+  .row{display:grid;grid-template-columns:118px 1fr;gap:4px 22px;padding:14px 0;border-top:1px dashed var(--line)}
+  .row:first-of-type{border-top:0}
+  .when{color:var(--muted);font-size:.85rem;font-variant-numeric:tabular-nums;padding-top:2px}
+  .what b{font-weight:600}
+  .what .org{color:var(--accent)}
+  .what p{margin:4px 0 0;color:var(--muted);font-size:.92rem}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+  .deflist{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;font-size:.95rem;align-items:baseline}
+  .deflist dt{font-weight:600}
+  .deflist dd{margin:0;color:var(--muted)}
+
+  .contact{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:8px}
+  .mail{font-family:var(--body);font-weight:600;font-size:1.05rem;
+    background:var(--accent-soft);color:var(--fg);border-radius:10px;padding:10px 15px;
+    border:1px solid var(--line);user-select:all;word-break:break-all}
+  .copy{border:1px solid var(--accent);background:transparent;color:var(--accent);
+    border-radius:10px;padding:10px 15px;font:inherit;font-weight:600;cursor:pointer}
+  .copy:hover{background:var(--accent);color:var(--surface)}
+  .muted-note{color:var(--muted);font-size:.86rem;margin-top:14px}
+
+  footer{padding-block:34px 48px;color:var(--muted);font-size:.84rem;border-top:1px solid var(--line)}
+
+  @media (max-width:560px){
+    .row{grid-template-columns:1fr;gap:2px}
+    .when{padding-top:0}
+    .cols{grid-template-columns:1fr;gap:22px}
+  }
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+</style>
+
+<header class="top">
+  <div class="topbar">
+    <span class="brand">Frhad&nbsp;Mohamad</span>
+    <nav>
+      <a href="#ueber">Über mich</a>
+      <a href="#wege">Werdegang</a>
+      <a href="#koennen">Kenntnisse</a>
+      <a href="#kontakt">Kontakt</a>
+      <button class="toggle" id="themeBtn" type="button" aria-label="Design wechseln">Dunkel</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <p class="eyebrow">Stade, Niedersachsen · auf dem Weg in die IT</p>
+    <h1>Schneider, Dolmetscher — und künftig Fachinformatiker.</h1>
+    <p class="tagline">Drei Länder, fünf Sprachen und die feste Absicht, das, was ich mir vornehme, auch zu Ende zu bringen.</p>
+    <div class="langline">
+      <span class="chip"><b>Kurdisch</b> Muttersprache</span>
+      <span class="chip"><b>Arabisch</b> Muttersprache</span>
+      <span class="chip"><b>Englisch</b> C2</span>
+      <span class="chip"><b>Deutsch</b> B2</span>
+      <span class="chip"><b>Türkisch</b> A2</span>
+    </div>
+  </div>
+
+  <section id="ueber">
+    <h2>Über mich</h2>
+    <p class="lead">Ich erreiche meine Ziele, weil ich motiviert bin und viel Energie mitbringe. Wenn ich mir etwas vornehme, arbeite ich hart und gebe nicht auf. Ich plane Schritt für Schritt, bleibe auch bei Schwierigkeiten ruhig und sehe Herausforderungen als Chance, besser zu werden. Für Computer interessiere ich mich seit meiner Kindheit — in Deutschland habe ich mich entschieden, daraus meinen Beruf zu machen.</p>
+  </section>
+
+  <section id="wege">
+    <h2>Werdegang</h2>
+    <p class="sec-note">Von der Schneiderei in Syrien über die humanitäre Arbeit in Griechenland bis zum Neuanfang in Deutschland.</p>
+
+    <h3 style="font-family:var(--display);font-weight:600;font-size:1.05rem;margin:18px 0 2px;color:var(--accent)">Deutschland</h3>
+    <div class="row"><div class="when">08.2025 – 04.2026</div><div class="what"><b>Taxifahrer</b> · <span class="org">Taxi 2000 Stade</span><p>Sicherer Fahrbetrieb im Stadtgebiet, Kundenservice, Bar- und Kartenabrechnung, Routenplanung mit Ortskenntnis und GPS.</p></div></div>
+    <div class="row"><div class="when">08.2024 – 05.2025</div><div class="what"><b>Deutschkurs B2 Beruf</b> · <span class="org">Groneschule Stade</span></div></div>
+    <div class="row"><div class="when">08.2024 – 11.2024</div><div class="what"><b>Projekt „MofA – Motivation für Arbeit“</b> · <span class="org">confido coaching contor, Stade</span></div></div>
+    <div class="row"><div class="when">06.2024</div><div class="what"><b>Unterrichtung im Sicherheitsgewerbe</b> nach §34a GewO · <span class="org">IHK Stade</span>, mit Abschluss</div></div>
+    <div class="row"><div class="when">11.2023 – 03.2024</div><div class="what"><b>Deutschkurs B1</b> · <span class="org">Bildung und Arbeit e.V., Stade</span> — B1-Zertifikat</div></div>
+    <div class="row"><div class="when">05.2022 – 05.2023</div><div class="what"><b>Integrationskurs</b> · <span class="org">Bildung und Arbeit e.V., Stade</span> — A2 (mündlich B1)</div></div>
+    <div class="row"><div class="when">11.2021</div><div class="what"><b>Ankunft in Deutschland</b></div></div>
+
+    <h3 style="font-family:var(--display);font-weight:600;font-size:1.05rem;margin:26px 0 2px;color:var(--accent)">Griechenland</h3>
+    <div class="row"><div class="when">06.2020 – 10.2021</div><div class="what"><b>Dolmetscher &amp; Kulturvermittler</b> · <span class="org">ITC – Interpreti e Traduttori, Camp Leros</span><p>Kurdisch – Arabisch – Englisch. Einsatz in Flüchtlings-Hotspots, Kliniken, Polizeistationen und Ämtern; Koordination, Berichte und Bürotätigkeiten.</p></div></div>
+    <div class="row"><div class="when">08.2019 – 02.2020</div><div class="what"><b>Englischlehrer</b> (Grund- und Vorstufe) · <span class="org">Pytheas’s Path Akademie, Athen</span></div></div>
+    <div class="row"><div class="when">2019 – 2020</div><div class="what"><b>Mitglied bei Toastmasters</b>, Athen — Rhetorik, Körpersprache und Führungsqualitäten</div></div>
+    <div class="row"><div class="when">04.2019 – 02.2020</div><div class="what"><b>Englischkurs C1 &amp; C2</b> · <span class="org">Pytheas’s Path Akademie, Athen</span>, mit Zertifikat</div></div>
+    <div class="row"><div class="when">08.2018 – 09.2018</div><div class="what"><b>Englisch-Lehrassistent &amp; IT-Tutor</b> · <span class="org">Movement on the Ground / Digital Learning Lab, Lesbos</span></div></div>
+
+    <h3 style="font-family:var(--display);font-weight:600;font-size:1.05rem;margin:26px 0 2px;color:var(--accent)">Syrien</h3>
+    <div class="row"><div class="when">2011 – 2014</div><div class="what"><b>Selbstständig – eigene Textil-Manufaktur</b>, Damaskus<p>Kleiner Betrieb mit sechs Mitarbeitern: Materialeinkauf, Zuschnitt, Verpackung, Großhandels-Verkauf, Kundenbetreuung, Personalführung und Ausbildung von Hilfskräften.</p></div></div>
+    <div class="row"><div class="when">1998 – 2018</div><div class="what"><b>Angestellter Schneider</b><p>Maßarbeit, Reparaturen, Bügeln, Verkauf und Kundenbetreuung in verschiedenen Geschäften.</p></div></div>
+  </section>
+
+  <section id="koennen">
+    <h2>Kenntnisse &amp; Fähigkeiten</h2>
+    <div class="cols">
+      <div>
+        <h3 style="font-family:var(--display);font-weight:600;font-size:1.05rem;margin:0 0 10px">Sprachen</h3>
+        <dl class="deflist">
+          <dt>Kurdisch</dt><dd>1. Muttersprache</dd>
+          <dt>Arabisch</dt><dd>2. Muttersprache</dd>
+          <dt>Englisch</dt><dd>C2</dd>
+          <dt>Deutsch</dt><dd>B2</dd>
+          <dt>Türkisch</dt><dd>A2, Alltag</dd>
+        </dl>
+      </div>
+      <div>
+        <h3 style="font-family:var(--display);font-weight:600;font-size:1.05rem;margin:0 0 10px">EDV &amp; Interessen</h3>
+        <dl class="deflist">
+          <dt>EDV</dt><dd>Microsoft Office, E-Mail, Adobe Photoshop</dd>
+          <dt>Foto</dt><dd>Nachtfotografie &amp; Milchstraße</dd>
+          <dt>Wasser</dt><dd>Tauchen (Open Water) &amp; Schwimmen</dd>
+          <dt>Mehr</dt><dd>Geschichte alter Kulturen, Lesen</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <h2>Kontakt</h2>
+    <p class="sec-note">Schreiben Sie mir gern — ich freue mich über jede Gelegenheit.</p>
+    <div class="contact">
+      <span class="mail" id="mail">frhad.s.mohamad@gmail.com</span>
+      <button class="copy" id="copyBtn" type="button">E-Mail kopieren</button>
+    </div>
+    <p class="muted-note">Zeugnisse und Zertifikate stelle ich auf Anfrage bereit.</p>
+  </section>
+
+  <footer>
+    © <span id="yr"></span> Frhad Mohamad · Stade, Niedersachsen
+  </footer>
+</div>
+
+<script>
+  // Theme toggle — remembers the viewer's choice where storage is allowed.
+  (function(){
+    var root=document.documentElement, btn=document.getElementById("themeBtn");
+    function sysDark(){return window.matchMedia&&window.matchMedia("(prefers-color-scheme:dark)").matches;}
+    function cur(){var t=root.getAttribute("data-theme");return t?t:(sysDark()?"dark":"light");}
+    function label(){btn.textContent=cur()==="dark"?"Hell":"Dunkel";}
+    try{var s=localStorage.getItem("theme");if(s)root.setAttribute("data-theme",s);}catch(e){}
+    label();
+    btn.addEventListener("click",function(){
+      var next=cur()==="dark"?"light":"dark";
+      root.setAttribute("data-theme",next);
+      try{localStorage.setItem("theme",next);}catch(e){}
+      label();
+    });
+  })();
+  // Copy e-mail with a graceful fallback.
+  (function(){
+    var btn=document.getElementById("copyBtn"), mail=document.getElementById("mail").textContent.trim();
+    btn.addEventListener("click",function(){
+      function done(){var o=btn.textContent;btn.textContent="Kopiert ✓";setTimeout(function(){btn.textContent=o;},1600);}
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(mail).then(done).catch(select);
+      }else select();
+      function select(){var r=document.createRange();r.selectNodeContents(document.getElementById("mail"));
+        var s=window.getSelection();s.removeAllRanges();s.addRange(r);done();}
+    });
+  })();
+  document.getElementById("yr").textContent=new Date().getFullYear();
+</script>
